@@ -35,9 +35,9 @@ class SketchExample extends React.Component {
     const { tool, size, color, fill, fillColor, items } = this.state;
     return (
       <div>
-        <div style={{float:'left', marginRight:20}}>
+        <div style={{float:'left', marginRight:20, borderWidth:'2px', borderColor:'black', borderStyle:'solid'}}>
           <SketchPad
-            width={500}
+            width={800}
             height={500}
             animate={true}
             size={size}
