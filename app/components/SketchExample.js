@@ -1,11 +1,10 @@
 import React from 'react';
 import { SketchPad, TOOL_PENCIL, TOOL_LINE, TOOL_RECTANGLE, TOOL_ELLIPSE } from '../../node_modules/react-sketchpad/lib/index';
 // import { SketchPad, TOOL_PENCIL, TOOL_LINE, TOOL_RECTANGLE, TOOL_ELLIPSE } from 'react-sketchpad';
-import io from 'socket.io-client';
 import SketchActions from '../actions/SketchActions';
 import SketchStore from '../stores/SketchStore';
 
-const socket = io('');
+import socket from '../socket';
 
 class SketchExample extends React.Component {
   constructor(props) {
@@ -46,7 +45,7 @@ class SketchExample extends React.Component {
             fillColor={fill ? fillColor : ''}
             items={items}
             tool={tool}
-            onCompleteItem={(i) => socket.emit('addItem', i)}
+            onEveryItemChange={(i) => socket.emit('addItem', i)}
           />
         </div>
         <div style={{float:'left'}}>
