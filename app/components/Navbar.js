@@ -37,6 +37,11 @@ class Navbar extends React.Component {
               <span className="badge badge-up badge-danger">{this.state.onlineUsers}</span>
             </Link>
           </div>
+          <div className='navbar-collapse collapse'>
+            <ul className='nav navbar-nav'>
+              <li><Link to='/newgame'>New Game</Link></li>
+            </ul>
+          </div>
         </div>
       </nav>
     );
