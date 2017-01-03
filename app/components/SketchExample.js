@@ -33,6 +33,7 @@ class SketchExample extends React.Component {
 
   render() {
     const { tool, size, color, fill, fillColor, items } = this.state;
+    const room = this.props.room;
     return (
       <div>
         <div style={{float:'left', marginRight:20, borderWidth:'2px', borderColor:'black', borderStyle:'solid'}}>
@@ -45,7 +46,7 @@ class SketchExample extends React.Component {
             fillColor={fill ? fillColor : ''}
             items={items}
             tool={tool}
-            onEveryItemChange={(i) => socket.emit('addItem', i)}
+            onEveryItemChange={(i) => socket.emit('addItem', {item: i, room: room})}
           />
         </div>
         <div style={{float:'left'}}>

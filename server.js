@@ -34,6 +34,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Put Express stuff before React Middleware
+var cryptoRandomString = require('crypto-random-string');
+/**
+ * GET /api/creategame
+ * Create new game
+ */
+app.get('/api/creategame', function(req, res, next) {
+  // TODO: connect these operations to a database
+  res.send({room: cryptoRandomString(8)});
+});
 
 // React Middleware
 app.use(function(req, res) {
@@ -75,7 +84,13 @@ io.sockets.on('connection', function(socket) {
   // SketchPad management
   socket.on('addItem', function(data) {
     console.log(data);
-    socket.broadcast.emit('addItem', data);
+
+    socket.broadcast.to(data.room).emit('addItem',data.item);
+  });
+
+  socket.on('bindRoom', function(data) {
+    console.log(data);
+    socket.join(data.room);
   });
 });
 
